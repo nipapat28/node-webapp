@@ -5,8 +5,15 @@
 - 😄 My name is: **Nipapat Khianyikhio**
 - ⚡ Student id: **63363454**
 - 🔭 I'm currently studying on **Faculty of Engineering**.
-- 
-
+- 💻 **Careers** that I want to be in the future.
+    - Computer Programmer
+    - Software Engineer
+    - Computer Systems Analyst
+    - Web Developer)
+- 🧠 **Aptitude**
+    - Math
+- ❣ **Interest** in computer engineering
+    - Creating new programs
 
 ## Developer Tech
 
