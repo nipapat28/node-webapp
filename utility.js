@@ -2,11 +2,12 @@
 
 const request = require("request-promise");
 const EXTERNAL_API="https://tools.ecpe.nu.ac.th/network/api/student/"; // put url
-const accessToken="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90b29scy5lY3BlLm51LmFjLnRoXC9uZXR3b3JrXC9hcGlcL2xvZ2luIiwiaWF0IjoxNjU5MDgwNDgyLCJleHAiOjE2NTkwODQwODIsIm5iZiI6MTY1OTA4MDQ4MiwianRpIjoiNGR5V0I5Q0Q3c1dRZkVwViIsInN1YiI6MzYsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.EJ-RIgetkgTD2eX6by1UlRANjpOBCKOJNQv2jRojRgU"; // put access token
+const accessToken="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90b29scy5lY3BlLm51LmFjLnRoXC9uZXR3b3JrXC9hcGlcL2xvZ2luIiwiaWF0IjoxNjYxNjg1NjAwLCJleHAiOjE2NjE2ODkyMDAsIm5iZiI6MTY2MTY4NTYwMCwianRpIjoidTV2a1Jmb0tXdVBHWFFqbSIsInN1YiI6MzYsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.aznAWEUdO_YT-KT5bSzjh3k8ANxfDF00bhPgv6o4rxw"; // put access token
 const student = {
-  name: '', // replace with your full name.
-  age: 19, // put your age.
-  gender: '', // replace with your gender
+  id_student:63363454,
+  name: 'Nipapat', // replace with your full name.
+  age: 21, // put your age.
+  gender: 'Female', // replace with your gender
   department: 'CPE'
 };
 
@@ -36,7 +37,6 @@ exports.findStudentbyId = function (student_id, cb) {
         });
 }
 
-exports.fakeStudentbyInfo = function (student_id, cb) {
+//exports.fakeStudentbyInfo = function (student_id, cb) {
 
-  cb(student);
-}
+  //cb(student);}

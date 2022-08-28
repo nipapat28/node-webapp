@@ -10,7 +10,7 @@
 <!--CSS-->
 <link rel="stylesheet" href="/jquery-ui/themes/base/jquery-ui.css">
 <!--Tailwind CSS-->
-<link rel="stylesheet" href="/styles/style.css"/>
+<!--<link rel="stylesheet" href="/styles/style.css"/>-->
 
 <!--Javascript-->
 <script src="/jquery/jquery.min.js"></script>
@@ -20,11 +20,10 @@
 </head>
 <body>
     <!--put here-->
-    <h1>Hello, Hoola</h1>
+    <!--<h1>Hello, Hoola</h1>-->
     <!---->
-
-
-    <div id="tabs">
+    
+  <div id="tabs">
         <ul>
           <li><a href="#tabs-1">1-แบบฟอร์มลงทะเบียน</a></li>
           <li><a href="#tabs-2">2-รายชื่อนิสิต(ALL)</a></li>
@@ -57,11 +56,10 @@
                 <img class="rounded-t-lg" src="/images/images.jpg" alt=""/>
               </a>
               <div class="p-6">
-                <h5 class="text-gray-900 text-xl font-medium mb-2">I'm pancake</h5>
-                <p class="text-gray-700 text-base mb-4">
-                  Zzz.Zzz 
-                </p>
-                <button type="button" class=" inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Button</button>
+                <h5 class="text-gray-900 text-xl font-medium mb-2" id="data-name" >Name: </h5>
+                <h5 class="text-gray-900 text-xl font-medium mb-2" id="data-studentID" >Student ID: </h5>
+                <h5 class="text-gray-900 text-xl font-medium mb-2" id="data-gpa" >GPA: </h5>
+                <h5 class="text-gray-900 text-xl font-medium mb-2" id="data-position" >Position: </h5>
               </div>
             </div>
           </div>
@@ -99,7 +97,7 @@
            headers: { 
              'Content-Type': 'application/json',
              "Accepts": "application/json",
-             "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90b29scy5lY3BlLm51LmFjLnRoXC9uZXR3b3JrXC9hcGlcL2xvZ2luIiwiaWF0IjoxNjU5MDgwNDgyLCJleHAiOjE2NTkwODQwODIsIm5iZiI6MTY1OTA4MDQ4MiwianRpIjoiNGR5V0I5Q0Q3c1dRZkVwViIsInN1YiI6MzYsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.EJ-RIgetkgTD2eX6by1UlRANjpOBCKOJNQv2jRojRgU",
+             "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90b29scy5lY3BlLm51LmFjLnRoXC9uZXR3b3JrXC9hcGlcL2xvZ2luIiwiaWF0IjoxNjYxNjg1NjAwLCJleHAiOjE2NjE2ODkyMDAsIm5iZiI6MTY2MTY4NTYwMCwianRpIjoidTV2a1Jmb0tXdVBHWFFqbSIsInN1YiI6MzYsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.aznAWEUdO_YT-KT5bSzjh3k8ANxfDF00bhPgv6o4rxw",
            },
            success: function(data){
              console.log(data);
@@ -257,7 +255,7 @@
           //elementButtonSave.setAttribute("class","tealA400");
           
          
-          elementButtonSave.setAttribute("onclick","popupConfirm('"+items[i].fullname+"',this)");
+          elementButtonSave.setAttribute("onclick","confirmAlert('"+items[i].student_id+"',this)");
           
   
           cell5.appendChild(elementButtonSave);
@@ -270,8 +268,36 @@
       }
       myTableDiv.appendChild(table);
     }
-  
-    function popupConfirm(fullname,objElement){
-      alert(fullname);
+
+    function confirmAlert(id){
+	    //console.log(id)
+      
+
+      $.ajax({
+           method: "GET",
+           url: "https://tools.ecpe.nu.ac.th/network/api/student/"+id,
+           dataType : 'json',
+           headers: { 
+             'Content-Type': 'application/json',
+             "Accepts": "application/json",
+             "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90b29scy5lY3BlLm51LmFjLnRoXC9uZXR3b3JrXC9hcGlcL2xvZ2luIiwiaWF0IjoxNjYxNjg1NjAwLCJleHAiOjE2NjE2ODkyMDAsIm5iZiI6MTY2MTY4NTYwMCwianRpIjoidTV2a1Jmb0tXdVBHWFFqbSIsInN1YiI6MzYsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.aznAWEUdO_YT-KT5bSzjh3k8ANxfDF00bhPgv6o4rxw",
+           },
+           success: function(data){
+             console.log(data);
+             $("#tabs").tabs("option","active",2);
+             document.getElementById("data-name").innerHTML = "Name: "+data[0].fullname;
+             document.getElementById("data-studentID").innerHTML = "Student_ID: "+data[0].student_id;
+             document.getElementById("data-gpa").innerHTML = "GPA: "+data[0].gpa;
+             document.getElementById("data-position").innerHTML = "Position: "+data[0].position;
+             //$("#fname").text(data[0].fullname);
+
+             //var tbName ="myDynamicTable";
+             //addTable(data,tbName);
+
+             //alert("Done");
+           }
+         });
     }
+
   </script>
+  
